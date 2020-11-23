@@ -1,0 +1,16 @@
+{
+  "name": "MX UUID",
+  "shortname": "mxuuid",
+  "version": "1.0.0",
+  "foundation_version": "4.5.2",
+  "description": "This fieldtype auto-generates UUIDs for empty fields. This can be useful if you need unique IDs but not a title or entry_id.",
+  "license": "MaxLazar",
+  "namespace": "MX\\Uuid",
+  "require": {
+    "php": ">=5.3.*",
+    "expressionengine/core": ">=3.5.17"
+  },
+  "resources": {
+    "themes": false
+  }
+}
