@@ -28,7 +28,6 @@ This fieldtype auto-generates UUIDs for empty fields. This can be useful if you 
 
 ## ToDo
 * Regenerate option
-* Add copy uuid option to field
 
 ## Support Policy
 This is Communite Edition  add-on.

@@ -223,11 +223,13 @@ class Mx_uuid_ft extends EE_Fieldtype
     public function display_field($data, $view_type = 'field', $settings = array(), $cp = true, $passed_init = array())
     {
 
-        $js       = "";
-        $css      = "";
-        $class    = "";
-        $subClass ="";
-        $r        = "";
+        $js             = "";
+        $css            = "";
+        $class          = "";
+        $subClass       = "";
+        $r              = "";
+        $js_block_start = '<script type="text/javascript">';
+        $js_block_end   = '</script>';
 
         if (!empty($settings)) {
             $cp = false;
@@ -247,10 +249,16 @@ class Mx_uuid_ft extends EE_Fieldtype
             } while (self::validateUuid($data, $this->field_id));
         }
 
-        return '<input type="hidden" name="'.$this->field_name.'" value="' . $data . '" />
-                <input type="text" name="'.$this->field_name.'" value="' . $data . '" disabled="disabled" />
-        '
-        ;
+        if (!self::$js_added and $cp) {
+            ee()->cp->add_to_foot('<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>');
+            ee()->cp->add_to_foot($js_block_start . "$( document ).ready(function() { new ClipboardJS('.copyme'); });" . $js_block_end);
+
+            self::$js_added = true;
+        }
+
+
+        return '<input type="hidden" name="'.$this->field_name.'" value="' . $data . '"  />
+                <input type="text" name="' . $this->field_name . '" value="' . $data . '" disabled="disabled" id="' . $this->field_name  . '" /><span class="input-group-button"><button class="btn copyme" type="button"  data-clipboard-text="' . $data . '" ><img src="data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjEwMjQiIHdpZHRoPSI4OTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTEyOCA3NjhoMjU2djY0aC0yNTZ6bTMyMC0zODRoLTMyMHY2NGgzMjB6bTEyOCAxOTJ2LTEyOGwtMTkyIDE5MiAxOTIgMTkydi0xMjhoMzIwdi0xMjh6bS0yODgtNjRoLTE2MHY2NGgxNjB6bS0xNjAgMTkyaDE2MHYtNjRoLTE2MHptNTc2IDY0aDY0djEyOGMtMSAxOC03IDMzLTE5IDQ1cy0yNyAxOC00NSAxOWgtNjQwYy0zNSAwLTY0LTI5LTY0LTY0di03MDRjMC0zNSAyOS02NCA2NC02NGgxOTJjMC03MSA1Ny0xMjggMTI4LTEyOHMxMjggNTcgMTI4IDEyOGgxOTJjMzUgMCA2NCAyOSA2NCA2NHYzMjBoLTY0di0xOTJoLTY0MHY1NzZoNjQwem0tNTc2LTUxMmg1MTJjMC0zNS0yOS02NC02NC02NGgtNjRjLTM1IDAtNjQtMjktNjQtNjRzLTI5LTY0LTY0LTY0LTY0IDI5LTY0IDY0LTI5IDY0LTY0IDY0aC02NGMtMzUgMC02NCAyOS02NCA2NHoiLz48L3N2Zz4=" width="13" alt="Copy to clipboard" /></button></span>';
     }
     /**
      * [renderTableCell description]
