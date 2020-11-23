@@ -1,5 +1,5 @@
 # MX UUID Field
-![MX UUID Demo](resources/img/mx-rate-demo.gif)
+![MX UUID Demo](resources/img/mx-uuid-demo.png)
 
 ![MX UUID Field](resources/img/mx-uuid.png)
 
@@ -19,9 +19,16 @@ This fieldtype auto-generates UUIDs for empty fields. This can be useful if you 
 ## Template Tags
 
 	{field_name}
+	
+## Example
+
+	{exp:channel:entries channel="my_secrets" search:uuid_field="{segment_2}"}
+	   ...
+	{/exp:channel:entries}
 
 ## ToDo
 * Regenerate option
+* Add copy uuid option to field
 
 ## Support Policy
 This is Communite Edition  add-on.
