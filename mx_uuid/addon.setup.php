@@ -20,7 +20,7 @@ return [
     'settings_exist' => false,
     // Advanced settings
     'fieldtypes'     => array(
-        'StarsField'     => array(
+        'UuidField'     => array(
         'name'           => 'MX UUID'
         )
     )

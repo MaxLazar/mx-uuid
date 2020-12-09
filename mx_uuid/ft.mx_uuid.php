@@ -156,7 +156,7 @@ class Mx_uuid_ft extends EE_Fieldtype
      */
     public function is_config($item)
     {
-        return in_array($item, $this->_cfg) && (false !== ee()->config->item('mx_rangeslider_'.$item));
+        return in_array($item, $this->_cfg) && (false !== ee()->config->item('mx_uuid_'.$item));
     }
 
     /**
